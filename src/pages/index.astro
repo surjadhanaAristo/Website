@@ -1,11 +1,208 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Aristo | Data Analytics & Machine Learning">
+	<main class="container">
+		<nav class="top-nav">
+            <button id="themeToggle" class="theme-btn">
+                <span class="icon">🌓</span> Toggle Night Mode
+            </button>
+        </nav>
+
+		<header class="hero">
+			<h1>Hi, I'm <span class="highlight">Aristo</span></h1>
+			<p class="subtitle">Computer Science student specializing in machine learning, data forecasting, and sports analytics.</p>
+			<div class="tech-stack">
+				<span>Python</span><span>PyTorch</span><span>Scikit-learn</span><span>FastAPI</span><span>SQL</span>
+			</div>
+		</header>
+
+		<section class="projects">
+			<h2>Featured Engineering</h2>
+			<div class="grid">
+				
+				<article class="card">
+                    <h3>ODS-MAS Tactical System</h3>
+                    <p class="tech">Python • FastAPI • n8n • LLMs</p>
+                    <p>A real-time tactical decision support system orchestrating multiple specialized LLM agents. Features a custom ASR microservice to transcribe live voice commands into structured game-state JSON.</p>
+                    
+                    <div class="app-container">
+                        <iframe 
+                            src="https://cp493-voice.vercel.app" 
+                            title="ODS-MAS Interactive Demo"
+                            loading="lazy"
+                            allow="microphone">
+                        </iframe>
+                    </div>
+                    
+                    <a href="https://github.com/surjadhanaAristo/CP493" class="repo-link" target="_blank">View on GitHub →</a>
+                </article>
+
+				<article class="card">
+					<h3>Demand Forecasting Pipeline</h3>
+					<p class="tech">XGBoost • Prophet • Looker Studio</p>
+					<p>Automated forecasting system built in a Linux environment. Improved forecast accuracy by over 60% across 100+ products, reducing decision time and optimizing inventory planning.</p>
+				</article>
+
+				<article class="card">
+					<h3>Player Engagement Model</h3>
+					<p class="tech">LightGBM • SHAP • Optuna</p>
+					<p>Two-stage ML pipeline to forecast user playtime across 113,000+ games. Handled zero-inflated data and utilized SHAP analysis to isolate key engagement drivers.</p>
+				</article>
+
+				<article class="card">
+					<h3>Game Environment Classifier</h3>
+					<p class="tech">PyTorch • ResNet18 • OpenCV</p>
+					<p>Computer vision pipeline using Transfer Learning to classify video game environments from raw image data, featuring custom data augmentation strategies.</p>
+				</article>
+
+			</div>
+		</section>
+
+	</main>
 </Layout>
+
+<style>
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 4rem 2rem;
+	}
+	.hero {
+		margin-bottom: 5rem;
+	}
+	h1 {
+		font-size: 3.5rem;
+		font-weight: 800;
+		letter-spacing: -1px;
+	}
+	.highlight {
+		color: var(--accent);
+	}
+	.subtitle {
+		font-size: 1.25rem;
+		color: var(--text-muted);
+		max-width: 600px;
+		margin-bottom: 1.5rem;
+	}
+	.tech-stack {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.tech-stack span {
+        background: transparent; 
+        color: var(--accent);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid var(--accent); 
+    }
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+	.card {
+		background: var(--card-bg);
+		padding: 2rem;
+		border-radius: 12px;
+		border: 1px solid rgba(0, 0, 0, 0.05); 
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+	.card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
+		border-color: transparent;
+	}
+	.card h3 {
+		font-size: 1.25rem;
+		margin-top: 0;
+	}
+	.tech {
+		font-size: 0.875rem;
+		color: var(--accent);
+		margin-bottom: 1rem;
+		font-family: monospace;
+	}
+	.card p:not(.tech) {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
+	.top-nav {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+    }
+    .theme-btn {
+        background: var(--card-bg);
+        color: var(--text-main);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+    }
+    .theme-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    :root[data-theme="dark"] .theme-btn {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+	.app-container {
+        margin-top: 1.5rem;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: var(--bg-color);
+        position: relative;
+        padding-bottom: 75%; 
+        height: 0;
+    }
+    :root[data-theme="dark"] .app-container {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    .app-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .repo-link {
+        display: inline-block;
+        margin-top: 1.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+</style>
+
+<script is:inline>
+    const button = document.getElementById("themeToggle");
+
+    if (button) {
+        button.addEventListener("click", () => {
+            const htmlElement = document.documentElement;
+            const isDark = htmlElement.getAttribute("data-theme") === "dark";
+            
+            if (isDark) {
+                htmlElement.removeAttribute("data-theme");
+                localStorage.setItem("theme", "light");
+            } else {
+                htmlElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+</script>
